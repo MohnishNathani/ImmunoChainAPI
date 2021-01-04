@@ -1,5 +1,86 @@
 [
 	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_batch_uuid",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "_temp",
+				"type": "int256"
+			},
+			{
+				"internalType": "int256",
+				"name": "_pressure",
+				"type": "int256"
+			},
+			{
+				"internalType": "string",
+				"name": "_latitude",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_longitude",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_authority",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_timestamp",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "_healthscore",
+				"type": "int256"
+			}
+		],
+		"name": "addLog",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_uuid",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_batch_uuid",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_manufacturer",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_mfd",
+				"type": "string"
+			},
+			{
+				"internalType": "int256",
+				"name": "_reqtemp",
+				"type": "int256"
+			}
+		],
+		"name": "addMed",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -44,37 +125,59 @@
 		"type": "event"
 	},
 	{
+		"anonymous": false,
 		"inputs": [
 			{
+				"indexed": false,
 				"internalType": "string",
-				"name": "_uuid",
+				"name": "uuid",
 				"type": "string"
 			},
 			{
+				"indexed": false,
+				"internalType": "int256",
+				"name": "temp",
+				"type": "int256"
+			},
+			{
+				"indexed": false,
+				"internalType": "int256",
+				"name": "pressure",
+				"type": "int256"
+			},
+			{
+				"indexed": false,
 				"internalType": "string",
-				"name": "_batch_uuid",
+				"name": "latitude",
 				"type": "string"
 			},
 			{
+				"indexed": false,
 				"internalType": "string",
-				"name": "_manufacturer",
+				"name": "longitude",
 				"type": "string"
 			},
 			{
+				"indexed": false,
 				"internalType": "string",
-				"name": "_mfd",
+				"name": "authority",
 				"type": "string"
 			},
 			{
-				"internalType": "uint256",
-				"name": "_reqtemp",
-				"type": "uint256"
+				"indexed": false,
+				"internalType": "string",
+				"name": "timestamp",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"internalType": "int256",
+				"name": "healthscore",
+				"type": "int256"
 			}
 		],
-		"name": "addMed",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
+		"name": "Tracking",
+		"type": "event"
 	},
 	{
 		"inputs": [
@@ -97,9 +200,9 @@
 				"type": "uint256"
 			},
 			{
-				"internalType": "uint256",
+				"internalType": "int256",
 				"name": "",
-				"type": "uint256"
+				"type": "int256"
 			}
 		],
 		"stateMutability": "view",
@@ -136,9 +239,9 @@
 				"type": "string"
 			},
 			{
-				"internalType": "uint256",
+				"internalType": "int256",
 				"name": "",
-				"type": "uint256"
+				"type": "int256"
 			}
 		],
 		"stateMutability": "view",

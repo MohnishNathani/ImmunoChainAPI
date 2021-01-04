@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "ethereumjs-wallet": "^1.0.1",
     "ethers": "^5.0.24",
     "express": "^4.17.1"
