@@ -5,13 +5,22 @@ var bodyParser = require('body-parser');
 const app = express()
 app.use(bodyParser.json());
 
-const CONTRACT_ADDRESS = "0x178c8C469D2F926CF9820daa624997BB6d5805A6";
+const CONTRACT_ADDRESS = "0x2f44CCA1c815f62506b30967E23d41B4559B9e08";
 const ABI = require('./abi.json'); 
 const provider = ethers.getDefaultProvider('rinkeby');
 const inter = new ethers.utils.Interface(ABI);
 const wallet = ethers.Wallet.fromMnemonic("regret zoo shed luggage tackle above reunion afraid dinosaur matrix orphan river").connect(provider);
 const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, wallet);
 
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    if (req.method === "OPTIONS") {
+      res.header("Access-Control-Allow-Methods", "PUT,POST,GET");
+      return res.status(200).json({});
+    }
+    next();
+  });
 
 app.get('/getmed', async(req, res)=>{
     try {
