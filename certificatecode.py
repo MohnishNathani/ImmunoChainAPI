@@ -9,7 +9,7 @@ TASK = str(sys.argv[2])
 
 
 
-font = ImageFont.truetype(fm.findfont(fm.FontProperties(family="arial")),60)
+font = ImageFont.truetype(fm.findfont(fm.FontProperties(family="DejaVu Sans")),60)
 
 img = Image.open('certificate1.jpg')
 draw = ImageDraw.Draw(img)
