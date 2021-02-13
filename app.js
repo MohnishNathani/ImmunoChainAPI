@@ -1,5 +1,7 @@
 const ethers = require('ethers');
 const express = require('express');
+const { spawn } = require("child_process");
+var path = require("path");
 var bodyParser = require('body-parser');
 
 const app = express()
@@ -12,6 +14,10 @@ const inter = new ethers.utils.Interface(ABI);
 const wallet = ethers.Wallet.fromMnemonic("regret zoo shed luggage tackle above reunion afraid dinosaur matrix orphan river").connect(provider);
 const contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, wallet);
 
+function runScript() {
+    return spawn("python3", ["-u", path.join(__dirname, "certificatecode.py"), A, B]);
+  }
+
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "*");
@@ -21,6 +27,26 @@ app.use((req, res, next) => {
     }
     next();
   });
+
+var A;
+
+app.get('/generateCerti', async(req, res)=>{
+    A = req.query.name
+    B = req.query.task
+    const subprocess = runScript();
+  subprocess.stdout.on("data", (data) => {
+    console.log(`data:${data}`);
+    var name = `${data}`;
+    res.send(name);
+  });
+  subprocess.stderr.on("data", (data) => {
+    console.log(`error:${data}`);
+  });
+  subprocess.on("close", () => {
+    console.log("Certificate generated for A");
+    res.sendFile(path.join(__dirname, "pictures", A+".jpg"))
+  });
+})
 
 app.get('/getmed', async(req, res)=>{
     try {
