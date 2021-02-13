@@ -1,4 +1,5 @@
 from PIL import Image, ImageDraw, ImageFont
+import matplotlib.font_manager as fm
 import pandas as pd
 import os
 import sys
@@ -6,7 +7,9 @@ import sys
 NAME = str(sys.argv[1])
 TASK = str(sys.argv[2])
 
-font = ImageFont.truetype('arial.ttf',60)
+
+
+font = ImageFont.truetype(fm.findfont(fm.FontProperties(family="arial")),60)
 
 img = Image.open('certificate1.jpg')
 draw = ImageDraw.Draw(img)
