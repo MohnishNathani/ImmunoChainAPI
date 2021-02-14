@@ -4,8 +4,20 @@ const { spawn } = require("child_process");
 var path = require("path");
 var bodyParser = require('body-parser');
 
+
+const dbAppRoute = require('./Routes/dbApp');
+const chatBotRoute = require('./Routes/chatbot');
+const webAppRoute = require('./Routes/webServer');
+
 const app = express()
 app.use(bodyParser.json());
+app.use(express.json({extended:false}));
+
+app.use('/database',dbAppRoute);
+app.use('/chatbot',chatBotRoute);
+app.use('/app',webAppRoute);
+app.use(bodyParser.urlencoded({extended:true}));
+
 
 const CONTRACT_ADDRESS = "0x2f44CCA1c815f62506b30967E23d41B4559B9e08";
 const ABI = require('./abi.json'); 
